@@ -18,10 +18,15 @@ pipeline {
                 withSonarQubeEnv('SonarServer') {
                     dir("Parte 2/projeto-java") {
                         sh """
+                        # 1. Cria a estrutura de pastas padrão que o Maven ama
+                        mkdir -p src/main/java
+                        
+                        # 2. Move o código da pasta Elements para a pasta padrão
+                        cp -r Elements/src/main/java/* src/main/java/
+                        
+                        # 3. Roda o Maven agora que os arquivos estão no lugar certo
                         mvn clean compile org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar \
                         -Dsonar.projectKey=projeto-java-augusto \
-                        -Dproject.build.sourceDirectory=Elements/src/main/java \
-                        -Dsonar.sources=Elements/src/main/java \
                         -Dsonar.java.binaries=target/classes
                         """
                     }
