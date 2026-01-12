@@ -20,9 +20,9 @@ pipeline {
                         sh """
                         mvn clean compile org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar \
                         -Dsonar.projectKey=projeto-java-augusto \
-                        -Dproject.build.sourceDirectory=Elements/src/main/java \
                         -Dsonar.sources=Elements/src/main/java \
-                        -Dsonar.java.binaries=target/classes
+                        -Dsonar.java.binaries=target/classes \
+                        -Dproject.build.sourceDirectory=Elements/src/main/java
                         """
                     }
                 }
