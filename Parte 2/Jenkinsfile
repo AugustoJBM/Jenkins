@@ -16,11 +16,11 @@ pipeline {
         stage('2. SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarServer') {
-                    dir('Parte 2/projeto-java') {
+                    dir("Parte 2/projeto-java") {
                         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar ' +
-                        '-Dsonar.projectKey=projeto-java-augusto ' +
-                        '-Dsonar.sources=src ' + 
-                        '-Dsonar.java.binaries=target/classes'
+                           '-Dsonar.projectKey=projeto-java-augusto ' +
+                           '-Dsonar.sources=Elements/src/main/java ' +
+                           '-Dsonar.java.binaries=target/classes'
                     }
                 }
             }
