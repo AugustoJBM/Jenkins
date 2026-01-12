@@ -7,6 +7,9 @@ import br.com.dbc.vemser.jedimasters.view.MenuView;
 
 public class Main {
     public static void main(String[] args) {
+
+        String api_key = "12345-ABCDE-67890-EFGHI"; // Isso simula uma credencial exposta
+        
         MonstroDAO bancoMonstro = new MonstroDAO();
         bancoMonstro.chamarMonstros();
         CartaDAO bancoCarta = new CartaDAO();
