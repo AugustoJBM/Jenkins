@@ -18,14 +18,15 @@ pipeline {
                 withSonarQubeEnv('SonarServer') {
                     dir("Parte 2/projeto-java") {
                         sh """
-                        # 1. Cria a estrutura de pastas padrão que o Maven ama
+                        # 1. Limpeza total e criação da estrutura
+                        rm -rf target
                         mkdir -p src/main/java
-                        
-                        # 2. Move o código da pasta Elements para a pasta padrão
                         cp -r Elements/src/main/java/* src/main/java/
                         
-                        # 3. Roda o Maven agora que os arquivos estão no lugar certo
+                        # 2. Comando Maven com 'force update' (-U) e versão do Lombok explícita
                         mvn clean compile org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar \
+                        -U \
+                        -Dlombok.version=1.18.24 \
                         -Dsonar.projectKey=projeto-java-augusto \
                         -Dsonar.java.binaries=target/classes
                         """
