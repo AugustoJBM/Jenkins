@@ -17,12 +17,13 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarServer') {
                     dir("Parte 2/projeto-java") {
-                        sh 'mvn clean compile org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar ' +
-                           '-Dsonar.projectKey=projeto-java-augusto ' +
-                           '-Dmaven.compiler.source=17 ' +
-                           '-Dmaven.compiler.target=17 ' +
-                           '-Dsonar.sources=Elements/src/main/java ' +
-                           '-Dsonar.java.binaries=target/classes'
+                        sh """
+                        mvn clean compile org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar \
+                        -Dsonar.projectKey=projeto-java-augusto \
+                        -Dproject.build.sourceDirectory=Elements/src/main/java \
+                        -Dsonar.sources=Elements/src/main/java \
+                        -Dsonar.java.binaries=target/classes
+                        """
                     }
                 }
             }
